@@ -1,28 +1,32 @@
 const main = async () => {
     const [owner, randomPerson] = await hre.ethers.getSigners(); // 
-    const waveContractFactory = await hre.ethers.getContractFactory('WavePortal');
-    const waveContract = await waveContractFactory.deploy();
-    await waveContract.deployed();
-    console.log("Contract deployed to:", waveContract.address);
+    const musicContractFactory = await hre.ethers.getContractFactory('MusicPortal');
+    const musicContract = await musicContractFactory.deploy();
+    await musicContract.deployed();
+    console.log("Contract deployed to:", musicContract.address);
     console.log("Contract delployed by:", owner.address);
 
     // if we have functions, we must "test" them...
     // Question: do we have to test just public functions?
 
-    let waveCount;
-    waveCount = await waveContract.getTotalSomething();
-    
-    let waveTxn = await waveContract.doSomething();
+    let recCount;
+    recCount = await musicContract.getTotalRecs();
+    console.log(recCount.toNumber());
+    let waveTxn = await musicContract.makeRec("link1...", "fire song");
     await waveTxn.wait();
   
-    waveCount = await waveContract.getTotalSomething();
-
+    recCount = await musicContract.getTotalRecs();
+    console.log(recCount.toNumber());
     // now we will simulate other ppl connecting to our contract and using doSomething
 
-    waveTxn = await waveContract.connect(randomPerson).doSomething();
+    waveTxn = await musicContract.connect(randomPerson).makeRec("link2... should have no description", "blah");
     await waveTxn.wait();
 
-    waveCount = await waveContract.getTotalSomething();
+    recCount = await musicContract.getTotalRecs();
+    console.log(recCount.toNumber());
+
+    let allRecs =  await musicContract.getAllRecs();
+    console.log(allRecs);
 
   };
   
