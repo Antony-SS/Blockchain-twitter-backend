@@ -2,14 +2,5 @@
 
 This is my first blockchain project.  I am going to make this so users can interact with one another on the chain.  This interaction is still vague, but I want to take it in the direction of music reccomendations in the form of spotify/soundclould links.  
 
-Try running some of the following tasks:
+Hardhat for the backend and used replit to make the frontend quicker to deploy - in the longterm I would consider moving this to a domain and server that I pay and host but for now that is too much for this small project.  Perhaps when I make my personal website/portfolio.
 
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
-```
